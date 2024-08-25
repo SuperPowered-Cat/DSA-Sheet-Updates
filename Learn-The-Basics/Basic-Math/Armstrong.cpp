@@ -7,6 +7,7 @@ int order(int x) {
 	return n;
 }
 
+
 bool checkArmstrong(int n){
 	int size = order(n);
 	int temp = n, sum = 0;

@@ -42,7 +42,7 @@ class Solution {
 public:
     int getLucky(string s, int k) {
         s = convert(s); //string to number conversion func
-        int sum = trans(s, 0, k); // number summing func
+        int sum = trans(s, k); // number summing func
         return sum;
     }
 
@@ -58,15 +58,30 @@ public:
         return newstr;
     }
 
-    int trans (string s, int sum, int k) {
-        
-        //base condition, have added up all the numbers of the string
-        if(s.empty()) {
-            if (k == 1) return sum; // k times added
-            else return trans(to_string(sum), 0, k-1); //decrement k
-        }
-        sum += s[0] - '0'; // adding the value of first char in string s
+    int trans (string s, int k) {
 
-        return trans(s.substr(1), sum, k); // proceding with further chars
+        
+        int sum = 0;
+        for (int i = 0; i < s.size(); i++) {
+            sum+=s[i] - '0';
+        }
+        if(k == 1) return sum;
+        return trans(to_string(sum), k - 1);
+
+       
     }
+
+    // old method of how i did it , but upper one is better :)
+
+    // int trans (string s, int sum, int k) {
+        
+    //     //base condition, have added up all the numbers of the string
+    //     if(s.empty()) {
+    //         if (k == 1) return sum; // k times added
+    //         else return trans(to_string(sum), 0, k-1); //decrement k
+    //     }
+    //     sum += s[0] - '0'; // adding the value of first char in string s
+
+    //     return trans(s.substr(1), sum, k); // proceding with further chars
+    // }
 };
